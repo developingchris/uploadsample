@@ -1,0 +1,9 @@
+*.suo
+*.dll
+*.xml
+*.pdb
+**/obj
+**/bin/**/*.*
+*.csproj.user
+*.*.swp
+*.*~
