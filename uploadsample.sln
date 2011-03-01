@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "uploadsample", "uploadsample\uploadsample.csproj", "{E776FA62-B63A-47A4-B8B1-0F6A4DB0EB3A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "uploadsample.tests", "uploadsample.tests\uploadsample.tests.csproj", "{1FB1383B-17FC-416C-8808-3F1AFF8B8E23}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,6 +15,10 @@ Global
 		{E776FA62-B63A-47A4-B8B1-0F6A4DB0EB3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E776FA62-B63A-47A4-B8B1-0F6A4DB0EB3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E776FA62-B63A-47A4-B8B1-0F6A4DB0EB3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FB1383B-17FC-416C-8808-3F1AFF8B8E23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FB1383B-17FC-416C-8808-3F1AFF8B8E23}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FB1383B-17FC-416C-8808-3F1AFF8B8E23}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FB1383B-17FC-416C-8808-3F1AFF8B8E23}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
