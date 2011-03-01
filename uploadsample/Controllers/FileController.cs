@@ -9,48 +9,33 @@ namespace uploadsample.Controllers
 {
     public class FileController : Controller
     {
+        private PictureUploads _pictures;
+
+        protected override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+            _pictures = new PictureUploads(ControllerContext);
+            base.OnActionExecuting(filterContext);
+        }
+
+
         [HttpPost]
         public ActionResult Upload(HttpPostedFileBase picture)
         {
-            var content = UserContent();
-            if (!content.Exists)
-            {
-                content.Create();
-            }
-
-            picture.SaveAs(Path.Combine(content.FullName, Path.GetFileName(picture.FileName)));
-
+            _pictures.Save(picture);
             return View();
         }
 
         public ActionResult List()
         {
-            var di = UserContent();
-
-            var images = new List<string>();
-
-            foreach (var file in di.GetFiles())
-            {
-                images.Add("/UserContent/" + file.Name);
-            }
+            var images = _pictures.GetThumbnailPaths();
             ViewData["images"] = images;
-
             return View();
-        }
-
-        private DirectoryInfo UserContent()
-        {
-            DirectoryInfo di = new DirectoryInfo(Server.MapPath("UserContent"));
-            return di;
         }
 
         public ActionResult CleanUpUserContent()
         {
-            var di = UserContent();
-            di.Delete(true);
-            di.Create();
+            _pictures.CleanOutContent();
             return Redirect("/");
         }
-
     }
 }

@@ -14,7 +14,7 @@
 <ul>
     <% images.ForEach(i =>
        {  %>
-       <li><img src="<%= i %>" /></li>
+       <li><a href="<%= i.Replace("_small","") %>"><img src="<%= i %>" /><a /></li>
     <%}); %>
 </ul>
 

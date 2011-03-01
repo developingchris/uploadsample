@@ -67,7 +67,7 @@ namespace uploadsample
 
         private string SmallName(string fileName)
         {
-            return Path.Combine(Path.GetDirectoryName(fileName),Path.GetFileNameWithoutExtension(fileName) + "_small" + Path.GetExtension(fileName)));
+            return Path.Combine(Path.GetDirectoryName(fileName),Path.GetFileNameWithoutExtension(fileName) + "_small" + Path.GetExtension(fileName));
         }
 
         private bool ResizeToMax(ref Image inImage, int MaxWidth, int MaxHeight)
