@@ -6,9 +6,17 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-<h2>Index</h2>
+<strong>
+Have you played every level of every zombie game?
+<br />
+Seen Zombieland so much that you just call it z-land and tallahassee is your second home.
+<br />
+Maybe it's time for another way to waste time on the internet.
+<br />
+Zombie chase is a site where you can upload photos. And then those photos get scaled down and chased by zombies.
+</strong>
 
-You should totally upload a file.
 <% Html.RenderPartial("uploadForm"); %>
+
 
 </asp:Content>

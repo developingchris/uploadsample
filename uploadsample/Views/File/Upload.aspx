@@ -15,9 +15,10 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-<h2>Upload</h2>
-
-<a href="javascript:void(0);" id="uploadMore">Upload another file</a> | <%= Html.ActionLink("Done", "List") %>
+<h2>BRAIIIIIINNNNNNSS!!!(photos)</h2>
+You can either upload another photo to be chased, or begin the chase.
+<br />
+<a href="javascript:void(0);" id="uploadMore">Upload another Brain</a> | <%= Html.ActionLink("Begin The Chase", "List") %>
 
 <div id="uploadArea" class="hidden">
     <% Html.RenderPartial("uploadForm"); %>

@@ -16,27 +16,22 @@ namespace uploadsample
         }
 
         private ControllerContext _context;
+        private string _small_pattern = "{0}_small{1}";
 
         public void CleanOutContent()
         {
             var di = UserContent();
             di.Delete(true);
-            di.Create();
-        }
-
-        private DirectoryInfo UserContent()
-        {
-            DirectoryInfo di = new DirectoryInfo(_context.HttpContext.Server.MapPath("UserContent"));
-            return di;
         }
 
         public List<string> GetThumbnailPaths()
         {
             var paths = new List<string>();
             var content = UserContent();
-            foreach (var file in content.GetFiles("*_small.*"))
+            var basepath = _context.HttpContext.Server.MapPath("/");
+            foreach (var file in (content.GetFiles(string.Format(_small_pattern, "*", ".*")) ?? new FileInfo[0]))
             {
-                paths.Add("/File/UserContent/" + file.Name);
+                paths.Add("/"+file.FullName.Replace(basepath, "").Replace("\\", "/"));
             }
             return paths;
         }
@@ -44,14 +39,14 @@ namespace uploadsample
         public void Save(HttpPostedFileBase picture)
         {
             var content = UserContent();
-            if (!content.Exists)
-            {
-                content.Create();
-            }
-
             string fileName = Path.Combine(content.FullName,Guid.NewGuid().ToString() + Path.GetFileName(picture.FileName));
+            
             picture.SaveAs(fileName);
+            ResizeOrMove(fileName);
+        }
 
+        private void ResizeOrMove(string fileName)
+        {
             Image image = Image.FromFile(fileName);
             if (ResizeToMax(ref image, 500, 700))
             {
@@ -67,7 +62,10 @@ namespace uploadsample
 
         private string SmallName(string fileName)
         {
-            return Path.Combine(Path.GetDirectoryName(fileName),Path.GetFileNameWithoutExtension(fileName) + "_small" + Path.GetExtension(fileName));
+            string directory = Path.GetDirectoryName(fileName);
+            string small_filename = string.Format(_small_pattern, Path.GetFileNameWithoutExtension(fileName), Path.GetExtension(fileName));
+
+            return Path.Combine(directory, small_filename);
         }
 
         private bool ResizeToMax(ref Image inImage, int MaxWidth, int MaxHeight)
@@ -89,5 +87,16 @@ namespace uploadsample
             }
             return resized;
         }
+
+        private DirectoryInfo UserContent()
+        {
+            DirectoryInfo di = new DirectoryInfo(_context.HttpContext.Server.MapPath("UserContent"));
+            if (!di.Exists)
+            {
+                di.Create();
+            }
+            return di;
+        }
+
     }
 }
