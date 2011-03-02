@@ -9,6 +9,15 @@ namespace uploadsample.Controllers
 {
     public class FileController : Controller
     {
+        public FileController()
+        {
+        }
+
+        public FileController(PictureUploads uploader)
+        {
+            _pictures = uploader;
+        }
+
         private PictureUploads _pictures;
 
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
@@ -21,7 +30,14 @@ namespace uploadsample.Controllers
         [HttpPost]
         public ActionResult Upload(HttpPostedFileBase picture)
         {
-            _pictures.Save(picture);
+            if (_pictures.IsImage(picture))
+            {
+                _pictures.Save(picture);
+            }
+            else
+            {
+                TempData["Error"] = "Sorry, Please upload images to take part in the chase.";
+            }
             return View();
         }
 

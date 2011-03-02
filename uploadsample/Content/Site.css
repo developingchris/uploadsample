@@ -25,6 +25,8 @@ a.passthrough {color:inherit;text-decoration:none;}
 
 #chase_list li {margin-left:3px; display:inline;}
 
+.error {background-color:#F2C968; color:#ff0000;}
+
 
 /* Styles for validation helpers
 -----------------------------------------------------------*/

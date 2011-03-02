@@ -10,21 +10,33 @@ namespace uploadsample
 {
     public class PictureUploads
     {
+        public PictureUploads()
+        {
+        }
+
         public PictureUploads(ControllerContext context)
         {
             _context = context;
         }
 
+        public ControllerContext ControllerContext
+        {
+            set
+            {
+                _context = value;
+            }
+        }
+
         private ControllerContext _context;
         private string _small_pattern = "{0}_small{1}";
 
-        public void CleanOutContent()
+        public virtual void CleanOutContent()
         {
             var di = UserContent();
             di.Delete(true);
         }
 
-        public List<string> GetThumbnailPaths()
+        public virtual List<string> GetThumbnailPaths()
         {
             var paths = new List<string>();
             var content = UserContent();
@@ -36,7 +48,7 @@ namespace uploadsample
             return paths;
         }
 
-        public void Save(HttpPostedFileBase picture)
+        public virtual void Save(HttpPostedFileBase picture)
         {
             var content = UserContent();
             string fileName = Path.Combine(content.FullName,Guid.NewGuid().ToString() + Path.GetFileName(picture.FileName));
@@ -98,5 +110,10 @@ namespace uploadsample
             return di;
         }
 
+
+        public virtual bool IsImage(HttpPostedFileBase picture)
+        {
+            return picture.ContentType.StartsWith("image/");
+        }
     }
 }

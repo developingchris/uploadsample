@@ -18,6 +18,10 @@
 <body>
     <div class="main_container corner_it_up" data-corner="30px">
         <h1 class="corner_it_up" data-corner="top 30px"><%= Html.ActionLink("Zombie Chase", "Index", new { controller = "Home" }, new { @class="passthrough"})%></h1>
+        <% if (!string.IsNullOrEmpty((TempData["Error"] ?? "" ).ToString()))
+           { %>
+            <div class="error"><%= TempData["Error"].ToString() %></div>
+        <%} %>
         <div class="body_container">
         <asp:ContentPlaceHolder ID="MainContent" runat="server">
         

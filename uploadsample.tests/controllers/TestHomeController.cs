@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using Xunit;
 using uploadsample.Controllers;
+using MvcContrib.TestHelper;
 
 namespace uploadsample.tests.controllers
 {
-    public class TestHomeController
+    public class TestHomeController : IntegrationTest
     {
         public TestHomeController() : base()
         {
@@ -20,8 +21,10 @@ namespace uploadsample.tests.controllers
         public void Index_Shows_View_With_No_ViewData()
         {
             var result = _controller.Index();
-            Assert.NotNull(result);
-            Assert.Empty(_controller.ViewData);
+            
+            result.AssertViewRendered().ForView(SameAsAction);
+            
+            _controller.ViewData.Count.ShouldBe(0);
         }
     }
 }

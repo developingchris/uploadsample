@@ -7,13 +7,18 @@
 <asp:Content ID="Content3" ContentPlaceHolderID="HeadContent" runat="server">
     <script>
         $(function () {
-            $("#uploadMore").click(function () { $("#uploadArea").show(); });
+            $("#uploadMore").click(function () { $("#uploadArea").toggle(); });
+            if ($(".error:visible").length) {
+                $("#uploadArea").show("slow");
+            }
+
         })
     </script>
 
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+
 
 <h2>BRAIIIIIINNNNNNSS!!!(photos)</h2>
 You can either upload another photo to be chased, or begin the chase.

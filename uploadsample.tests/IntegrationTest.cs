@@ -7,5 +7,7 @@ namespace uploadsample.tests
 {
     public class IntegrationTest
     {
+
+        public const string SameAsAction = "";
     }
 }
